@@ -25,7 +25,6 @@ const NotifyList = ({ messageList }) => {
 				{" "}
 				Notifications{" "}
 			</Typography>
-			<Divider />
 			{messageList.length !== 0 ? (
 				<List sx={{ width: "100%" }}>
 					{messageList?.map((message, index) => (

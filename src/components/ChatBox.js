@@ -6,6 +6,7 @@ import { createMessage } from "../api/message.api";
 const ChatBox = () => {
 	let initVal = { username: "", message: "" };
 	const [userInput, setUserInput] = useState(initVal);
+	const [disableBtn, setDisableBtn] = useState(true);
 
 	const handleSendMessage = async (e) => {
 		e.preventDefault();
@@ -22,6 +23,14 @@ const ChatBox = () => {
 			console.error("Error:", error);
 		}
 	};
+
+	useEffect(() => {
+		if (userInput?.username && userInput?.message) {
+			setDisableBtn(false);
+		} else {
+			setDisableBtn(true);
+		}
+	}, [userInput]);
 
 	return (
 		<Box
@@ -52,8 +61,7 @@ const ChatBox = () => {
 				type='submit'
 				fullWidth
 				variant='contained'
-				//disabled={disableBtn}
-			>
+				disabled={disableBtn}>
 				Send message
 			</Button>
 		</Box>
